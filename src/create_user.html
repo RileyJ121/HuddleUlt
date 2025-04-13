@@ -1,32 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../public/create_user.css" rel="stylesheet">
-  <link href="../public/main.css" rel="stylesheet">
-  <title>Huddle Ult</title>
-</head>
-<body>
-  <nav>
-    <img src="../public/Logo.png" alt="Logo">
-    <ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../public/create_user.css" rel="stylesheet" />
+    <link href="../public/main.css" rel="stylesheet" />
+    <title>Huddle Ult</title>
+  </head>
+  <body>
+    <nav>
+      <img src="../public/Logo.png" alt="Logo" />
+      <ul>
         <li><a href="home.html">Home</a></li>
         <li><a href="search_team.html">Search</a></li>
         <li><a href="player_activity.html">Activity</a></li>
         <li><a href="user_profile.html">Profile</a></li>
-    </ul>
-  </nav>
-  <div class="bg">
-    <main>
-      <div class="header">
-        <a href="user_profile.html"><h3>🢀</h3></a>
-        <h1>New User</h1>
-      </div>
-      <div class="main">
-        [Add form for creating a new user]
-      </div>
-    </main>
-  </div>
-</body>
+      </ul>
+    </nav>
+    <div class="bg">
+      <main>
+        <div class="header">
+          <a href="user_profile.html"><h3>🢀</h3></a>
+          <h1>New User</h1>
+        </div>
+        <div class="main">
+          <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" /><br />
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" /><br />
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" /><br />
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" /><br />
+            <label for="phonenum">Phone Number:</label>
+            <input type="text" id="phonenum" name="phonenum" /><br />
+            <label for="usauID">USAU ID:</label>
+            <input type="text" id="usauID" name="usauID" /><br />
+            <fieldset>
+              <legend>Gender to play against</legend>
+              <input type="radio" id="genderM" name="gender" />
+              <label for="genderM">Male</label><br />
+              <input type="radio" id="genderF" name="gender" />
+              <label for="genderF">Female</label><br />
+            </fieldset>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>
