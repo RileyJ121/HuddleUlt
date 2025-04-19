@@ -24,6 +24,11 @@
         <h1>Find Teams</h1>
       </div>
       <div class="main">
+      <?php 
+        echo isset($_COOKIE["user"]) ? $_COOKIE["user"] : "Not Logged In";
+        echo "<br>";
+      ?>
+
       <a href="create_club_team.html">New Club Team</a>
           <a href="create_league_team.html">New League Team</a>
           <a href="create_pickup_team.html">New Pickup Team</a>
@@ -51,7 +56,7 @@
         $sql = "SELECT * FROM team WHERE 1 = 1";
 
         if($long && $lat) {
-          $sql = $sql . " AND ABS(longitude - " . $long . ") < 0.6 AND ABS(latitude - " . $lat . ") < 0.6";
+          $sql = $sql . " AND ABS(longitude - $long) < 0.6 AND ABS(latitude - $lat) < 0.6";
         }
 
         if($team > 0) {
