@@ -24,9 +24,6 @@
         <h1>Profile</h1>
       </div>
       <div class="main">
-        <li><a href="create_user.html">New User</a></li>
-        <li><a href="edit_user_profile.html">Edit User</a></li>
-
         <form action="login.php" method="post">
           <label for="fname">Username:</label>
           <input type="text" id="username" name="username" value="" required>
@@ -38,6 +35,9 @@
         <form action="logout.php">
           <input type="submit" Value="Log Out">
         </form>
+
+        <a href="create_user.html">Register</a>
+        
 
         <br>
 
@@ -75,6 +75,7 @@
                     <p><strong>Phone Number:</strong> {$user["Phone"]}</p>
                     <p><strong>USAU ID:</strong> " . (isset($user['UsauID'])? $user["UsauID"]: "No USAU ID found") . "</p>
                     <p><strong>Plays against:</strong> {$genderMatch}</p>
+                    <a href='edit_user_profile.html'>Edit User Info</a>
                   ";
 
               echo "<h2>{$loggedInUser}'s Teams:</h2>

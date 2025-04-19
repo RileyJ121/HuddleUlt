@@ -76,3 +76,7 @@ main {
 .header h1 {
     font-size: 1.8rem;
 }
+
+div.main {
+    padding: 10px;
+}
