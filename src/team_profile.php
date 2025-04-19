@@ -51,6 +51,7 @@
                     <p><strong>Latitude:</strong> {$team["Latitude"]} <strong>Longitude:</strong> {$team["Longitude"]}</p>
             "; 
           
+            // Check for club team info
             include 'start_db.php';
             $sql = "SELECT GenderDiv, AgeDiv, Captain 
                     FROM clubteam AS c
@@ -60,28 +61,73 @@
             
 
             if ($result->num_rows > 0) {
-                echo "<p><strong>Team Type:</strong> League Team</p>";
+                echo "<p><strong>Team Type:</strong> Club Team</p>";
                 $clubTeamInfo = $result -> fetch_assoc();
+
+                switch ($clubTeamInfo["GenderDiv"]) {
+                    case 1:
+                      $genderDiv = "Men";
+                      break;
+                    case 2:
+                      $genderDiv = "Woman";
+                      break;
+                    case 3:
+                      $genderDiv = "Mixed";
+                      break;
+                    default:
+                      $genderDiv = "...";
+                      break;
+                }
+
+                echo "<p><strong>Captain:</strong> {$clubTeamInfo["Captain"]}</p>";
+                echo "<p><strong>Gender Division:</strong> {$genderDiv}</p>";
+
+                switch ($clubTeamInfo["AgeDiv"]) {
+                    case 1:
+                      $ageDiv = "Youth";
+                      break;
+                    case 2:
+                      $ageDiv = "College";
+                      break;
+                    case 3:
+                      $ageDiv = "Open";
+                      break;
+                    case 4:
+                        $ageDiv = "Masters";
+                    case 5:
+                        $ageDiv = "Grandmasters";
+                    case 6:
+                        $ageDiv = "Great Grandmasters";
+                    default:
+                      $ageDiv = "...";
+                      break;
+                }
+
+                echo "<p><strong>Age Division:</strong> {$ageDiv}</p>";
+
+                $sql = "SELECT Username, Fname, Lname
+                        FROM player 
+                        WHERE ClubID = '{$teamID}'";
+                $result = $conn -> query($sql);
+
+                echo "<h3>Players:</h3>";
+                while($clubTeamPlayer = $result -> fetch_assoc()) {
+                    echo "<li>
+                            <a href='player_profile.php?username={$clubTeamPlayer["Username"]}'>
+                                {$clubTeamPlayer["Fname"]} {$clubTeamPlayer["Lname"]} 
+                                ({$clubTeamPlayer["Username"]})
+                            </a>
+                        </li>";
+
+                }
+
 
             }
 
             $conn -> close();
 
         ?>
-        
-        <br><br>
 
-        Name: [Team Name]
-        Host: [Host Username]
-        Description: [Description]
-        Latitude: [Latitude]
-        Longitude: [Longitude]
-
-        Player List:
-        <div>
-          Username: [Username]
-          Name: [First Name] [Last Initial]
-        </div>
       </div>
     </main>
   </div>
