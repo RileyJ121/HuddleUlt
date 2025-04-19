@@ -14,7 +14,7 @@
         <li><a href="home.html">Home</a></li>
         <li><a href="search_team.php">Search</a></li>
         <li><a href="player_activity.html">Activity</a></li>
-        <li><a href="user_profile.html">Profile</a></li>
+        <li><a href="user_profile.php">Profile</a></li>
     </ul>
   </nav>
   <div class="bg">

@@ -25,18 +25,35 @@
       </div>
       <div class="main">
         <li><a href="create_league.html">New League</a></li>
-        <form>
+        <form action="search_league.php" method="GET">
           <label for="fname">Longitude:</label>
           <input type="text" id="fname" name="fname" value="">
           <label for="lname">Latitude:</label>
           <input type="text" id="lname" name="lname" value=""><br>
           <input type="submit" value="Submit">
         </form>
-        <div>
-          <h1>[League Name]</h1>
-          <p>Host: [Username]</p>
-          <button>View More</button>
-        </div>
+        <?php
+        include 'start_db.php';
+        $lat = isset($_GET['lat']) ? $_GET["lat"] : "";
+        $long = isset($_GET['long']) ? $_GET["long"] : "";
+        
+        $sql = "SELECT * FROM league";
+
+        if($long && $lat) {
+          $sql = $sql . "WHERE ABS(longitude - $long) < 0.6 AND ABS(latitude - $lat) < 0.6";
+        }
+
+        $result = $conn -> query($sql);
+
+        if($result->num_rows > 0) {
+          while($row = $result -> fetch_assoc()) {
+            echo $row["Name"] . " (Host: " . $row["Host"] . ")<br><br>";
+          }
+        } else {
+          echo "0 Leagues";
+        }
+        $conn -> close();
+      ?>
       </div>
     </main>
   </div>
