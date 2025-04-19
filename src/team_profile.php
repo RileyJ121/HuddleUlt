@@ -124,6 +124,40 @@
 
             }
 
+            $sql = "SELECT Fee, Days, Skill, MinAge, MaxAge
+                    FROM pickupteam AS p
+                    INNER JOIN team as t ON p.TeamID = t.TeamID
+                    WHERE p.TeamID = {$team["TeamID"]}";
+            $result = $conn -> query($sql);
+
+            if ($result->num_rows > 0) {
+                echo "<p><strong>Team Type:</strong> Pickup Team</p>";
+                $pickupTeamInfo = $result -> fetch_assoc();
+
+                echo "<p><strong>Fee:</strong> \${$pickupTeamInfo["Fee"]}</p>";
+                echo "<p><strong>Days Played:</strong> {$pickupTeamInfo["Days"]}</p>";
+                echo "<p><strong>Skill Level:</strong> {$pickupTeamInfo["Skill"]}</p>";
+                echo "<p><strong>Age Range:</strong> {$pickupTeamInfo["MinAge"]}-{$pickupTeamInfo["MaxAge"]}</p>";
+
+                $sql = "SELECT Username, Fname, Lname
+                        FROM player as p
+                        INNER JOIN pickupteamplayers as pu ON p.Username = pu.Player
+                        WHERE pu.TeamID = {$teamID}";
+                $result = $conn -> query($sql);
+
+                echo "<h3>Players:</h3>";
+                while($pickupTeamPlayer = $result -> fetch_assoc()) {
+                    echo "<li>
+                            <a href='player_profile.php?username={$pickupTeamPlayer["Username"]}'>
+                                {$pickupTeamPlayer["Fname"]} {$pickupTeamPlayer["Lname"]} 
+                                ({$pickupTeamPlayer["Username"]})
+                            </a>
+                        </li>";
+
+                }
+
+            }
+
             $conn -> close();
 
         ?>
