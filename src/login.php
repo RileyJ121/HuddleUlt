@@ -44,11 +44,9 @@
           setcookie("user", $row["Username"], time() + (86400 * 30), "/"); // 86400 = 1 day
         
 
-          echo "Logged In
-          <a href=\"user_profile.php\">Done</a>";
+          echo "Logged In <br> <a href=\"user_profile.php\">Done</a>";
         } else {
-          echo "Log In Failed
-          <a href=\"user_profile.php\">Try Again</a>";
+          echo "Log In Failed <br> <a href=\"user_profile.php\">Try Again</a>";
         }
         ?>
 

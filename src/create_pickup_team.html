@@ -24,15 +24,15 @@
         <h1>New Pickup Group</h1>
       </div>
       <div class="main">
-        <form>
+        <form  action="create_pickup_team_confirmation.php" method="POST">
           <label for="name">Name:</label>
-          <input type="text" id="name" name="name"><br>
+          <input type="text" id="name" name="name" required><br>
           <label for="desc">Description:</label>
           <input type="text" id="desc" name="desc"><br>
           <label for="long">Longitude:</label>
-          <input type="text" id="long" name="long"><br>
+          <input type="text" id="long" name="long" required><br>
           <label for="lat">Latitude:</label>
-          <input type="text" id="lat" name="lat"><br>
+          <input type="text" id="lat" name="lat" required><br>
           <label for="skill">Skill Level:</label>
           <input type="text" id="skill" name="skill"><br>
           <label for="minage">Min Age:</label>
