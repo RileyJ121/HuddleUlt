@@ -124,6 +124,7 @@
 
             }
 
+            // Check for Pickup Team info
             $sql = "SELECT Fee, Days, Skill, MinAge, MaxAge
                     FROM pickupteam AS p
                     INNER JOIN team as t ON p.TeamID = t.TeamID
@@ -156,6 +157,38 @@
 
                 }
 
+            }
+
+            $sql = "SELECT LeagueID, Skill, Captain
+                    FROM leagueteam AS l
+                    INNER JOIN team as t ON l.TeamID = t.TeamID
+                    WHERE l.TeamID = {$team["TeamID"]}";
+            $result = $conn -> query($sql);
+
+
+            if ($result->num_rows > 0) {
+                echo "<p><strong>Team Type:</strong> League Team</p>";
+                $leagueTeamInfo = $result -> fetch_assoc();
+
+                echo "<p><strong>Skill Level:</strong> {$leagueTeamInfo["Skill"]}</p>";
+                echo "<p><strong>Captain:</strong> {$leagueTeamInfo["Captain"]}</p>";
+
+                $sql = "SELECT Username, Fname, Lname
+                        FROM player as p
+                        INNER JOIN leagueteamplayers as l ON p.Username = l.Player
+                        WHERE l.TeamID = {$teamID}";
+                $result = $conn -> query($sql);
+
+                echo "<h3>Players:</h3>";
+                while($leagueTeamPlayer = $result -> fetch_assoc()) {
+                    echo "<li>
+                            <a href='player_profile.php?username={$leagueTeamPlayer["Username"]}'>
+                                {$leagueTeamPlayer["Fname"]} {$leagueTeamPlayer["Lname"]} 
+                                ({$leagueTeamPlayer["Username"]})
+                            </a>
+                        </li>";
+
+                }
             }
 
             $conn -> close();
