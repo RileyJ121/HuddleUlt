@@ -50,6 +50,8 @@
                     <p><strong>Description:</strong> {$team["TeamDesc"]}</p>
                     <p><strong>Latitude:</strong> {$team["Latitude"]} <strong>Longitude:</strong> {$team["Longitude"]}</p>
             "; 
+
+            $teamType = "";
           
             // Check for club team info
             include 'start_db.php';
@@ -61,6 +63,7 @@
             
 
             if ($result->num_rows > 0) {
+                $teamType = "club";
                 echo "<p><strong>Team Type:</strong> Club Team</p>";
                 $clubTeamInfo = $result -> fetch_assoc();
 
@@ -132,6 +135,7 @@
             $result = $conn -> query($sql);
 
             if ($result->num_rows > 0) {
+                $teamType = "pickup";
                 echo "<p><strong>Team Type:</strong> Pickup Team</p>";
                 $pickupTeamInfo = $result -> fetch_assoc();
 
@@ -167,6 +171,7 @@
 
 
             if ($result->num_rows > 0) {
+                $teamType = "league";
                 echo "<p><strong>Team Type:</strong> League Team</p>";
                 $leagueTeamInfo = $result -> fetch_assoc();
 
