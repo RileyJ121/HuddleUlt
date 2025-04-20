@@ -26,7 +26,7 @@ if (isset($_COOKIE["user"])) {
     if ($captain == "NULL" || $result->num_rows > 0) {
         // Create generic team
         $sql = "INSERT INTO team
-                VALUES (NULL, '$name', '$desc', $lat, $long, '$loggedInUser')";
+                VALUES (NULL, '$name', $desc, $lat, $long, '$loggedInUser')";
         $conn->query($sql);
 
         // Create club team
