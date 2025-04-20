@@ -24,9 +24,9 @@
         <h1>New League</h1>
       </div>
       <div class="main">
-        <form>
+        <form action="create_league_confirmation.php" method="POST">
           <label for="name">Name:</label>
-          <input type="text" id="name" name="name"><br>
+          <input type="text" id="name" name="name" required><br>
           <label for="fee">Entry Fee:</label>
           <input type="text" id="fee" name="fee"><br>
           <label for="start">Start Date:</label>
@@ -42,9 +42,9 @@
           <label for="ppt">Players Per Team:</label>
           <input type="text" id="ppt" name="ppt"><br>
           <label for="lat">Latitude:</label>
-          <input type="text" id="lat" name="lat"><br>
+          <input type="text" id="lat" name="lat" required><br>
           <label for="long">Longitude:</label>
-          <input type="text" id="long" name="long"><br>
+          <input type="text" id="long" name="long" required><br>
           <input type="submit" value="Submit">
         </form>
       </div>

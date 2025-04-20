@@ -31,8 +31,6 @@
         <?php
         if (isset($_COOKIE["user"])) {
           $loggedInUser = $_COOKIE["user"];
-          echo "<h2>Player Info</h2>";
-
 
           include 'start_db.php';
           $sql = "SELECT Fname, Lname, Email, Phone, ClubID, UsauID, Gender FROM player WHERE Username = '$loggedInUser'";
@@ -67,16 +65,13 @@
                     </form>
                   ";
 
-            echo "<h2>Team Info:</h2>
-                    
-              ";
+            echo "<h2>Your Teams:</h2>";
 
             // First, check for a club team
             if (isset($user["ClubID"])) {
               $sql = "SELECT * FROM clubteam as c
-                        INNER JOIN team as t ON c.TeamID = t.TeamID
-                        WHERE c.TeamID = '{$user["ClubID"]}'
-                ";
+                      INNER JOIN team as t ON c.TeamID = t.TeamID
+                      WHERE c.TeamID = '{$user["ClubID"]}'";
 
               $result2 = $conn->query($sql);
               $clubTeam = $result2->fetch_assoc();
@@ -88,22 +83,16 @@
                           <a href='team_profile.php?teamID={$clubTeam["TeamID"]}'>View More Info</a> 
                         </div>
                   ";
-
-
               } else {
                 echo "An error occurred when fetching data.";
               }
-
-
-            } else {
-              echo "{$loggedInUser} is not in a Club Team";
             }
 
             // Fetch League Teams
-            $sql = "SELECT Name, TeamDesc, Host, t.TeamID FROM Team as t
-                      INNER JOIN LeagueTeamPlayers as l ON  t.TeamID = l.TeamID
-                      WHERE l.Player = '{$loggedInUser}'
-              ";
+            $sql = "SELECT * FROM Team as t
+                    INNER JOIN LeagueTeamPlayers as l ON  t.TeamID = l.TeamID
+                    WHERE l.Player = '{$loggedInUser}'";
+
             $result2 = $conn->query($sql);
             while ($leagueTeam = $result2->fetch_assoc()) {
               echo "<div class='team-listing'>
@@ -116,10 +105,9 @@
             }
 
             // Fetch Pickup Teams
-            $sql = "SELECT Name, TeamDesc, Host, p.TeamID FROM Team as t
-                      INNER JOIN PickupTeamPlayers as p ON  t.TeamID = p.TeamID
-                      WHERE p.Player = '{$loggedInUser}'
-                      ";
+            $sql = "SELECT * FROM Team as t
+                    INNER JOIN PickupTeamPlayers as p ON t.TeamID = p.TeamID
+                    WHERE p.Player = '{$loggedInUser}'";
 
             $result2 = $conn->query($sql);
             while ($pickupTeam = $result2->fetch_assoc()) {
@@ -131,7 +119,6 @@
                       </div>
                 ";
             }
-
           } else {
             echo "An error has occurred";
           }
