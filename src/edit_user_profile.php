@@ -31,7 +31,7 @@ if (isset($_COOKIE["user"])) {
     <ul>
       <li><a href="home.html">Home</a></li>
       <li><a href="search_team.php">Search</a></li>
-      <li><a href="player_activity.html">Activity</a></li>
+      <li><a href="player_activity.php">Activity</a></li>
       <li><a href="user_profile.php">Profile</a></li>
     </ul>
   </nav>
