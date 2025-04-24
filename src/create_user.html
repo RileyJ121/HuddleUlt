@@ -12,39 +12,39 @@
       <img src="../public/Logo.png" alt="Logo" />
       <ul>
         <li><a href="home.html">Home</a></li>
-        <li><a href="search_team.html">Search</a></li>
+        <li><a href="search_team.php">Search</a></li>
         <li><a href="player_activity.html">Activity</a></li>
-        <li><a href="user_profile.html">Profile</a></li>
+        <li><a href="user_profile.php">Profile</a></li>
       </ul>
     </nav>
     <div class="bg">
       <main>
         <div class="header">
-          <a href="user_profile.html"><h3>🢀</h3></a>
+          <a href="user_profile.php"><h3>🢀</h3></a>
           <h1>New User</h1>
         </div>
         <div class="main">
-          <form>
+          <form action="create_user_confirmation.php" method="POST">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" /><br />
+            <input type="text" id="username" name="username" required/><br />
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" required/><br />
             <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname" /><br />
+            <input type="text" id="firstname" name="firstname" required/><br />
             <label for="lastname">Last Name:</label>
-            <input type="text" id="lastname" name="lastname" /><br />
+            <input type="text" id="lastname" name="lastname" required/><br />
             <label for="email">Email:</label>
-            <input type="text" id="email" name="email" /><br />
+            <input type="text" id="email" name="email" required/><br />
             <label for="phonenum">Phone Number:</label>
             <input type="text" id="phonenum" name="phonenum" /><br />
             <label for="usauID">USAU ID:</label>
             <input type="text" id="usauID" name="usauID" /><br />
             <fieldset>
-              <legend>Gender to play against</legend>
-              <input type="radio" id="genderM" name="gender" />
-              <label for="genderM">Male</label><br />
-              <input type="radio" id="genderF" name="gender" />
-              <label for="genderF">Female</label><br />
-              <input type="radio" id="genderX" name="gender" />
-              <label for="genderX">Mixed</label><br />
+              <legend>Gender Matching Player</legend>
+              <input type="radio" id="gender" name="gender" value="1">
+              <label for="pickup">Male</label>
+              <input type="radio" id="gender" name="gender" value="2">
+              <label for="club">Female</label>
             </fieldset>
             <input type="submit" value="Submit" />
           </form>

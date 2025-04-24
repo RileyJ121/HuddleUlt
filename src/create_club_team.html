@@ -12,27 +12,27 @@
     <img src="../public/Logo.png" alt="Logo">
     <ul>
         <li><a href="home.html">Home</a></li>
-        <li><a href="search_team.html">Search</a></li>
+        <li><a href="search_team.php">Search</a></li>
         <li><a href="player_activity.html">Activity</a></li>
-        <li><a href="user_profile.html">Profile</a></li>
+        <li><a href="user_profile.php">Profile</a></li>
     </ul>
   </nav>
   <div class="bg">
     <main>
       <div class="header">
-        <a href="search_team.html"><h3>🢀</h3></a>
+        <a href="search_team.php"><h3>🢀</h3></a>
         <h1>New Club Team</h1>
       </div>
       <div class="main">
-        <form>
+        <form action="create_club_team_confirmation.php" method="POST">
           <label for="name">Name:</label>
-          <input type="text" id="name" name="name"><br>
+          <input type="text" id="name" name="name" required><br>
           <label for="desc">Description:</label>
           <input type="text" id="desc" name="desc"><br>
-          <label for="long">Longitude:</label>
-          <input type="text" id="long" name="long"><br>
           <label for="lat">Latitude:</label>
-          <input type="text" id="lat" name="lat"><br>
+          <input type="text" id="lat" name="lat" required><br>
+          <label for="long">Longitude:</label>
+          <input type="text" id="long" name="long" required><br>
           <label for="gender">Gender Division:</label>
           <input type="text" id="gender" name="gender"><br>
           <label for="age">Age Division:</label>
