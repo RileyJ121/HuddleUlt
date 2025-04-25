@@ -60,7 +60,7 @@
         <br>
         <?php
         echo "<p><strong>Name:</strong> {$team["Name"]}</p>
-                    <p><strong>Host:</strong> {$team["Host"]}</p>
+                    <p><strong>Host:</strong> <a href='player_profile.php?username={$team["Host"]}'>{$team["Host"]}</a></p>
                     <p><strong>Description:</strong> {$team["TeamDesc"]}</p>
                     <p><strong>Latitude:</strong> {$team["Latitude"]} <strong>Longitude:</strong> {$team["Longitude"]}</p>
             ";
