@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../public/team_profile.css" rel="stylesheet">
   <link href="../public/main.css" rel="stylesheet">
+  <link href="../public/user_profile.css" rel="stylesheet">
+  <link href="../public/team_profile.css" rel="stylesheet">
   <title>Huddle Ult</title>
 </head>
 
@@ -53,11 +54,12 @@
             
             <input type=\"submit\" name=\"leave\"
                     class=\"button\" value=\"Leave Team\" />
-            </form>";
+            </form>
+            <br>";
         }
         ?>
 
-        <br>
+        
         <?php
         echo "<p><strong>Name:</strong> {$team["Name"]}</p>
                     <p><strong>Host:</strong> <a href='player_profile.php?username={$team["Host"]}'>{$team["Host"]}</a></p>

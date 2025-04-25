@@ -1,7 +1,44 @@
 div.team-listing {
   margin-bottom: 10px;
-  background-color: rgba(247, 127, 58, 0.18);
-  padding: 10px;
+  border-left: solid #FF5F1F;
+  padding: 15px;
   border-radius: 15px;
 }
 
+/*override*/
+div.main {
+    padding: 10px 35px;
+}
+
+.main a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+.main a:hover {
+    color: #FF5F1F;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+h3 .gray {
+    color: #B3B3B3;
+    font-weight: normal;
+}
+
+
+
+input[type=submit] {
+    text-align: center;
+    background: #B3B3B3;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-family: 'Figtree', sans-serif;
+}
+input[type=submit]:hover {
+    background: #FF5F1F;
+}
