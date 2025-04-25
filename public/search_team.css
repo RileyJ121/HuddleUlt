@@ -1,40 +1,11 @@
 .search {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
     gap: 8px;
-    color: #B3B3B3;
-    font-size: 12px;
-}
-.text {
-    width: 25%;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-.select {
-    width: 20%;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-.submit {
-    width: 33px;
 }
 
-select {
-    width: 20%;
-    padding: 8px;
-    border: none;
-    border-bottom: 2px solid #B3B3B3;
-}
-input[type=text] {
-    width: 25%;
-    padding: 8px;
-    border: none;
-    border-bottom: 2px solid #B3B3B3;
-}
-input[type=text]:focus {
-    outline: none;
-}
 input[type=submit] {
     height: 33px;
     width: 33px;
@@ -46,13 +17,6 @@ input[type=submit] {
 input[type=submit]:hover {
     background: #FF5F1F;
 }
-select:hover {
-    border-bottom: 2px solid #FF5F1F;
-}
-input[type=text]:hover {
-    border-bottom: 2px solid #FF5F1F;
-}
-
 
 .or {
     width: 100%;
@@ -64,33 +28,8 @@ input[type=text]:hover {
     font-size: 12px;   
 }
 .or a {
-    text-decoration: none;
     color: #B3B3B3;
 }
 .or a:hover {
-    color: #FF5F1F;
-}
-
-.team_list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.team {
-    padding: 8px 16px;
-    width: calc(100% - 64px);
-}
-.team p {
-    margin-block: 7px;
-}
-.title {
-    color: #B3B3B3;
-}
-.team a {
-    color: black;
-    text-decoration: none;
-}
-.team a:hover {
     color: #FF5F1F;
 }

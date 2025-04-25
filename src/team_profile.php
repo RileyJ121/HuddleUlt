@@ -59,7 +59,6 @@
         }
         ?>
 
-        
         <?php
         echo "<p><strong>Name:</strong> {$team["Name"]}</p>
                     <p><strong>Host:</strong> <a href='player_profile.php?username={$team["Host"]}'>{$team["Host"]}</a></p>

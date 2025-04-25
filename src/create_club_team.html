@@ -25,20 +25,34 @@
       </div>
       <div class="main">
         <form action="create_club_team_confirmation.php" method="POST">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required><br>
-          <label for="desc">Description:</label>
-          <input type="text" id="desc" name="desc"><br>
-          <label for="lat">Latitude:</label>
-          <input type="text" id="lat" name="lat" required><br>
-          <label for="long">Longitude:</label>
-          <input type="text" id="long" name="long" required><br>
-          <label for="gender">Gender Division:</label>
-          <input type="text" id="gender" name="gender"><br>
-          <label for="age">Age Division:</label>
-          <input type="text" id="age" name="age"><br>
-          <label for="capt">Captain:</label>
-          <input type="text" id="capt" name="capt"><br>
+          <div class="box">
+            <label>Name*</label>
+            <input type="text" id="name" name="name" required><br>
+          </div><br>
+          <div class="box">
+            <label>Description</label>
+            <input type="text" id="desc" name="desc"><br>
+          </div><br>
+          <div class="box">
+            <label>Latitude*</label>
+            <input type="text" id="lat" name="lat" required><br>
+          </div><br>
+          <div class="box">
+            <label>Longitude*</label>
+            <input type="text" id="long" name="long" required><br>
+          </div><br>
+          <div class="box">
+            <label>Gender Division</label>
+            <input type="text" id="gender" name="gender"><br>
+          </div><br>
+          <div class="box">
+            <label>Age Division</label>
+            <input type="text" id="age" name="age">
+          </div><br>
+          <div class="box">
+            <label>Captain</label>
+            <input type="text" id="capt" name="capt">
+          </div><br>
           <input type="submit" value="Submit">
         </form>
       </div>

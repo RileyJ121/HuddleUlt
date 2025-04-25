@@ -25,24 +25,42 @@
       </div>
       <div class="main">
         <form  action="create_pickup_team_confirmation.php" method="POST">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required><br>
-          <label for="desc">Description:</label>
-          <input type="text" id="desc" name="desc"><br>
-          <label for="long">Longitude:</label>
-          <input type="text" id="long" name="long" required><br>
-          <label for="lat">Latitude:</label>
-          <input type="text" id="lat" name="lat" required><br>
-          <label for="skill">Skill Level:</label>
-          <input type="text" id="skill" name="skill"><br>
-          <label for="minage">Min Age:</label>
-          <input type="text" id="minage" name="minage"><br>
-          <label for="maxage">Max Age:</label>
-          <input type="text" id="maxage" name="maxage"><br>
-          <label for="days">Days of Week:</label>
-          <input type="text" id="days" name="days"><br>
-          <label for="fee">Entry Fee:</label>
-          <input type="text" id="fee" name="fee"><br>
+          <div class="box">
+            <label>Name*</label>
+            <input type="text" id="name" name="name" required><br>
+          </div><br>
+          <div class="box">
+            <label>Description</label>
+            <input type="text" id="desc" name="desc"><br>
+          </div><br>
+          <div class="box">
+            <label>Latitude*</label>
+            <input type="text" id="lat" name="lat" required><br>
+          </div><br>
+          <div class="box">
+            <label>Longitude*</label>
+            <input type="text" id="long" name="long" required><br>
+          </div><br>
+          <div class="box">
+            <label>Skill Level</label>
+            <input type="text" id="skill" name="skill"><br>
+          </div><br>
+          <div class="box">
+            <label>Min Age</label>
+            <input type="text" id="minage" name="minage"><br>
+          </div><br>
+          <div class="box">
+            <label>Max Age</label>
+            <input type="text" id="maxage" name="maxage"><br>
+          </div><br>
+          <div class="box">
+            <label>Days of Week</label>
+            <input type="text" id="days" name="days"><br>
+          </div><br>
+          <div class="box">
+            <label>Entry Fee</label>
+            <input type="text" id="fee" name="fee"><br>
+          </div><br>
           <input type="submit" value="Submit">
         </form>
       </div>

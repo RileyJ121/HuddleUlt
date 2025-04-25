@@ -20,31 +20,51 @@
   <div class="bg">
     <main>
       <div class="header">
-        <a href="search_league.html"><h3>🢀</h3></a>
+        <a href="search_league.php"><h3>🢀</h3></a>
         <h1>New League</h1>
       </div>
       <div class="main">
         <form action="create_league_confirmation.php" method="POST">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required><br>
-          <label for="fee">Entry Fee:</label>
-          <input type="text" id="fee" name="fee"><br>
-          <label for="start">Start Date:</label>
-          <input type="text" id="start" name="start"><br>
-          <label for="end">End Date:</label>
-          <input type="text" id="end" name="end"><br>
-          <label for="days">Days of Week:</label>
-          <input type="text" id="days" name="days"><br>
-          <label for="minage">Min Age:</label>
-          <input type="text" id="minage" name="minage"><br>
-          <label for="maxage">Max Age:</label>
-          <input type="text" id="maxage" name="maxage"><br>
-          <label for="ppt">Players Per Team:</label>
-          <input type="text" id="ppt" name="ppt"><br>
-          <label for="lat">Latitude:</label>
-          <input type="text" id="lat" name="lat" required><br>
-          <label for="long">Longitude:</label>
-          <input type="text" id="long" name="long" required><br>
+          <div class="box">
+            <label>Name*</label>
+            <input type="text" id="name" name="name" required><br>
+          </div><br>
+          <div class="box">
+            <label for="fee">Entry Fee</label>
+            <input type="text" id="fee" name="fee"><br>
+          </div><br>
+          <div class="box">
+            <label>Start Date</label>
+            <input type="text" id="start" name="start"><br>
+          </div><br>
+          <div class="box">
+            <label>End Date</label>
+            <input type="text" id="end" name="end"><br>
+          </div><br>
+          <div class="box">
+            <label>Days of Week</label>
+            <input type="text" id="days" name="days"><br>
+          </div><br>
+          <div class="box">
+            <label>Min Age</label>
+            <input type="text" id="minage" name="minage"><br>
+          </div><br>
+          <div class="box">
+            <label>Max Age</label>
+            <input type="text" id="maxage" name="maxage"><br>
+          </div><br>
+          <div class="box">
+            <label>Players Per Team</label>
+            <input type="text" id="ppt" name="ppt"><br>
+          </div><br>
+          <div class="box">
+            <label>Latitude*</label>
+            <input type="text" id="lat" name="lat" required><br>
+          </div><br>
+          <div class="box">
+            <label>Longitude*</label>
+            <input type="text" id="long" name="long" required><br>
+          </div><br>
           <input type="submit" value="Submit">
         </form>
       </div>

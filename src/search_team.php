@@ -29,27 +29,33 @@
       </div>
 
       <div class="main">
-        <div class="search">
-          <label class="text">Latitude</label>
-          <label class="text" for="long">Longitude</label>
-          <label class="select">Team Type</label>
-          <label class="submit"></label>
-        </div>
         <form class="search" method="get">
-          <input type="text" id="lat" name="lat" placeholder="xx.xxxx">
-          <input type="text" id="long" name="long" placeholder="xx.xxxx">
-          <select name="team" id="team">
-            <option value="0">Any</option>
-            <option value="1">Pickup</option>
-            <option value="2">League</option>
-            <option value="3">Club</option>
-          </select>
-          <input type="submit" value="&#x1F50E;&#xFE0E;">
+          <div class="box">
+            <label>Latitude</label> <br>
+            <input type="text" id="lat" name="lat" placeholder="xx.xxxx">
+          </div>
+          <div class="box">
+            <label>Longitude</label> <br>
+            <input type="text" id="long" name="long" placeholder="xx.xxxx">
+          </div>
+          <div class="box">
+            <label>Team Type</label> <br>
+            <select name="team" id="team">
+              <option value="0">Any</option>
+              <option value="1">Pickup</option>
+              <option value="2">League</option>
+              <option value="3">Club</option>
+            </select>
+          </div>
+          <div class="submit">
+            <label></label> <br>
+            <input type="submit" value="&#x1F50E;&#xFE0E;">
+          </div>
         </form>
         <p class="or">Or Create a Team:
-          <a class="create" href="create_club_team.html">Pickup</a>,
+          <a class="create" href="create_pickup_team.html">Pickup</a>,
           <a class="create" href="create_league_team.html">League</a>,
-          <a class="create" href="create_pickup_team.html">Club</a>
+          <a class="create" href="create_club_team.html">Club</a>
         </p>
 
         <br>

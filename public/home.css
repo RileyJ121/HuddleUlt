@@ -1,5 +1,5 @@
 .image{
-    width: 20rem;
+    width: 40%;
 }
 
 .main {
@@ -11,7 +11,7 @@
 }
 
 p {
-    width: 34rem;
+    width: 100%;
     text-indent: 3rem;
     text-align: justify;
     line-height: 1.3rem;

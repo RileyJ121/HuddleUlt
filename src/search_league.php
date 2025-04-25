@@ -24,36 +24,59 @@
         <h1>Find Leagues</h1>
       </div>
       <div class="main">
-        <li><a href="create_league.html">New League</a></li>
-        <form action="search_league.php" method="GET">
-          <label for="fname">Longitude:</label>
-          <input type="text" id="fname" name="fname" value="">
-          <label for="lname">Latitude:</label>
-          <input type="text" id="lname" name="lname" value=""><br>
-          <input type="submit" value="Submit">
+        <form class="search" method="get">
+          <div class="box">
+            <label>Latitude</label> <br>
+            <input type="text" id="lat" name="lat" placeholder="xx.xxxx">
+          </div>
+          <div class="box">
+            <label>Longitude</label> <br>
+            <input type="text" id="long" name="long" placeholder="xx.xxxx">
+          </div>
+          <div class="box">
+            <label>Team Type</label> <br>
+            <select name="team" id="team">
+              <option value="0">Any</option>
+              <option value="1">Pickup</option>
+              <option value="2">League</option>
+              <option value="3">Club</option>
+            </select>
+          </div>
+          <div class="submit">
+            <label></label> <br>
+            <input type="submit" value="&#x1F50E;&#xFE0E;">
+          </div>
         </form>
-        <?php
-        include 'start_db.php';
-        $lat = isset($_GET['lat']) ? $_GET["lat"] : "";
-        $long = isset($_GET['long']) ? $_GET["long"] : "";
-        
-        $sql = "SELECT * FROM league";
+        <p class="or">Or :
+          <a href="create_league.html">Create a League</a>
+        </p>
 
-        if($long && $lat) {
-          $sql = $sql . "WHERE ABS(longitude - $long) < 0.6 AND ABS(latitude - $lat) < 0.6";
-        }
+        <div class="team_list">
+          <?php
+          include 'start_db.php';
+          $lat = isset($_GET['lat']) ? $_GET["lat"] : "";
+          $long = isset($_GET['long']) ? $_GET["long"] : "";
 
-        $result = $conn -> query($sql);
+          $sql = "SELECT * FROM league WHERE 1 = 1";
 
-        if($result->num_rows > 0) {
-          while($row = $result -> fetch_assoc()) {
-            echo $row["Name"] . " (Host: " . $row["Host"] . ")<br><br>";
+          if ($long && $lat) {
+            $sql = $sql . " AND ABS(longitude - $long) < 0.6 AND ABS(latitude - $lat) < 0.6";
           }
-        } else {
-          echo "0 Leagues";
-        }
-        $conn -> close();
-      ?>
+
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              echo "<div class=\"team\">
+                      <p class=\"title\"><a><strong>{$row["Name"]}</strong></a> (Host: {$row["Host"]}) (ID: {$row["LeagueID"]})<p>
+                    </div>";
+            }
+          } else {
+            echo "0 Leagues";
+          }
+          $conn->close();
+          ?>
+        </div>
       </div>
     </main>
   </div>
