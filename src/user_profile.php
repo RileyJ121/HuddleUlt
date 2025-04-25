@@ -54,100 +54,107 @@
                 break;
             }
 
-            echo "<p><strong>Name:</strong> {$user["Fname"]} {$user["Lname"]}</p>
-                    <p><strong>Email:</strong> {$user["Email"]}</p>
-                    <p><strong>Phone Number:</strong> {$user["Phone"]}</p>
-                    <p><strong>USAU ID:</strong> " . (isset($user['UsauID']) ? $user["UsauID"] : "No USAU ID found") . "</p>
-                    <p><strong>Plays against:</strong> {$genderMatch}</p>
-                    <br>
-                    <a href='edit_user_profile.php'>Edit User Info</a>
-                    <form action=\"logout.php\">
-                      <input type=\"submit\" Value=\"Log Out\">
-                    </form>
-                  ";
+            echo "<div class=\"box\">
+                    <label>Name</label> <br>
+                    <p>{$user["Fname"]} {$user["Lname"]}</p>
+                  </div>";
+            echo "<div class=\"box\">
+                    <label>Email</label> <br>
+                    <p>{$user["Email"]}</p>
+                  </div>";
+            echo "<div class=\"box\">
+                    <label>Phone</label> <br>
+                    <p>{$user["Phone"]}</p>
+                  </div>";
+            echo "<div class=\"box\">
+                    <label>USAU ID</label> <br>
+                    <p>" . (isset($user['UsauID']) ? $user["UsauID"] : "No USAU ID found") . "</p>
+                  </div>";
+            echo "<div class=\"box\">
+                    <label>Gender Match</label> <br>
+                    <p>{$genderMatch}</p>
+                  </div>";
+            ?>
+            <div class="box">
+              <label><a class="create" href="edit_user_profile.php">Edit Profile</a> or <a class="create"
+                  href="logout.php">Log Out</a></label>
+            </div>
 
-            echo "<h2>Your Teams:</h2>";
-
-            // First, check for a club team
-            $sql = "SELECT * FROM clubteam as c
+            <div class="team_list">
+              <h4>Your Teams:</h4>
+              <?php
+              // First, check for a club team
+              $sql = "SELECT * FROM clubteam as c
                     INNER JOIN team as t ON c.TeamID = t.TeamID
                     WHERE c.TeamID = '{$user["ClubID"]}' 
                           OR t.Host = '{$loggedInUser}'";
 
-            $result2 = $conn->query($sql);
-            while ($clubTeam = $result2->fetch_assoc()) {
-              echo "<div class='team-listing'>
-                        <h3>
-                          <a href='team_profile.php?teamID={$clubTeam["TeamID"]}'>{$clubTeam["Name"]}</a> 
-                          <span class='gray'>(Captain: {$clubTeam["Captain"]})</span>
-                        </h3>
-                        Club Team
-                        <p>{$clubTeam["TeamDesc"]}</p>
-                      </div>
-                  ";
-            }
-            
+              $result2 = $conn->query($sql);
+              while ($clubTeam = $result2->fetch_assoc()) {
+                echo "<div class=\"team\">
+                      <p class=\"title\"><a href=\"team_profile.php?teamID={$clubTeam["TeamID"]}\"><strong>{$clubTeam["Name"]}</strong></a> (Host: {$clubTeam["Host"]})<p>
+                      <p>{$clubTeam["TeamDesc"]}</p>
+                    </div>";
+              }
 
-            // Fetch League Teams
-            $sql = "SELECT * FROM Team as t
+              // Fetch League Teams
+              $sql = "SELECT * FROM Team as t
                     INNER JOIN LeagueTeamPlayers as l ON  t.TeamID = l.TeamID
                     WHERE l.Player = '{$loggedInUser}'
                           OR (t.Host = '{$loggedInUser}' AND t.Host=l.Player)";
 
-            $result2 = $conn->query($sql);
-            while ($leagueTeam = $result2->fetch_assoc()) {
-              echo "<div class='team-listing'>
-                        <h3>
-                          <a href='team_profile.php?teamID={$leagueTeam["TeamID"]}'>{$leagueTeam["Name"]}</a>
-                          <span class='gray'>(Host: {$leagueTeam["Host"]})</span>
-                        </h3>
-                        League Team
-                        <p> {$leagueTeam["TeamDesc"]} </p>
-                      </div>
-                ";
-            }
+              $result2 = $conn->query($sql);
+              while ($leagueTeam = $result2->fetch_assoc()) {
+                echo "<div class=\"team\">
+                      <p class=\"title\"><a href=\"team_profile.php?teamID={$leagueTeam["TeamID"]}\"><strong>{$leagueTeam["Name"]}</strong></a> (Host: {$leagueTeam["Host"]})<p>
+                      <p>{$leagueTeam["TeamDesc"]}</p>
+                    </div>";
+              }
 
-            // Fetch Pickup Teams
-            $sql = "SELECT * FROM Team as t
+              // Fetch Pickup Teams
+              $sql = "SELECT * FROM Team as t
                     INNER JOIN PickupTeamPlayers as p ON t.TeamID = p.TeamID
                     WHERE p.Player = '{$loggedInUser}'
                           OR (t.Host = '{$loggedInUser}' AND t.Host=p.Player)";
 
-            $result2 = $conn->query($sql);
-            while ($pickupTeam = $result2->fetch_assoc()) {
-              echo "<div class='team-listing'>
-                        <h3>
-                          <a href='team_profile.php?teamID={$pickupTeam["TeamID"]}'>{$pickupTeam["Name"]}</a>
-                          <span class='gray'>(Host: {$pickupTeam["Host"]})</span>
-                        </h3> 
-                        Pickup Team
-                        <p> {$pickupTeam["TeamDesc"]} </p>
-                      </div>
-                ";
-            }
+              $result2 = $conn->query($sql);
+              while ($pickupTeam = $result2->fetch_assoc()) {
+                echo "<div class=\"team\">
+                      <p class=\"title\"><a href=\"team_profile.php?teamID={$pickupTeam["TeamID"]}\"><strong>{$pickupTeam["Name"]}</strong></a> (Host: {$pickupTeam["Host"]})<p>
+                      <p>{$pickupTeam["TeamDesc"]}</p>
+                    </div>";
+              }
           } else {
             echo "An error has occurred";
           }
+
+          echo "</div>";
 
 
           $conn->close();
 
         } else {
-          echo "<h2>Log In:</h2>
-                <form action=\"login.php\" method=\"post\">
-                <label for=\"username\">Username:</label>
-                <input type=\"text\" id=\"username\" name=\"username\" value=\"\" required>
-                <label for=\"password\">Password:</label>
-                <input type=\"text\" id=\"password\" name=\"password\" value=\"\" required>
-                <input type=\"submit\" value=\"Log In\">
-                </form>
-                <a href=\"create_user.html\">Or Create User</a>
-            ";
+          echo "<h4>Log In:</h4>
+          <form class=\"search\" action=\"login.php\" method=\"post\">
+            <div class=\"box\">
+              <label>Username</label> <br>
+              <input type=\"text\" id=\"username\" name=\"username\" placeholder=\"username\" required>
+            </div>
+            <div class=\"box\">
+              <label>Password</label> <br>
+              <input type=\"text\" id=\"password\" name=\"password\" placeholder=\"∗∗∗∗∗∗∗∗\" required>
+            </div>
+            <div class=\"submit\">
+              <label></label> <br>
+              <input type=\"submit\" value=\"&crarr;\">
+            </div>
+          </form>";
+          echo "<p class=\"or\">Or
+                  <a href=\"create_user.html\">Create a User</a>
+                </p>";
         }
-
         ?>
-
-      </div>
+        </div>
     </main>
   </div>
 </body>
