@@ -29,67 +29,66 @@
       </div>
       <div class="main">
         <div>
-          <?php
-          if (isset($_COOKIE["user"])) {
-            include 'start_db.php';
-            $loggedInUser = $_COOKIE["user"];
-            // Fetch League Teams
-            $sql = "SELECT Team.TeamID, Name, TeamDesc, Count(*)
+          <div class="team_list">
+            <?php
+            if (isset($_COOKIE["user"])) {
+              include 'start_db.php';
+              $loggedInUser = $_COOKIE["user"];
+              // Fetch League Teams
+              $sql = "SELECT Team.TeamID, Name, TeamDesc, Count(*)
                     FROM Team, LeagueTeamPlayers
                     WHERE Team.TeamID = LeagueTeamPlayers.TeamID
                     AND Player IN (SELECT Follows FROM Follows WHERE Player = '$loggedInUser')
                     GROUP BY Team.TeamID";
+              $result1 = $conn->query($sql);
+              if ($result1->num_rows > 0) {
+                echo "<h4>League Teams</h4>";
+                while ($leagueTeam = $result1->fetch_assoc()) {
+                  echo "<div class=\"team\">
+                    <p class=\"title\"><a href=\"team_profile.php?teamID={$leagueTeam["TeamID"]}\"><strong>{$leagueTeam["Name"]}</strong></a> (Following {$leagueTeam["Count(*)"]} Players)<p>
+                    <p>{$leagueTeam["TeamDesc"]}</p>
+                    </div>";
+                }
+              }
 
-            $result2 = $conn->query($sql);
-            while ($leagueTeam = $result2->fetch_assoc()) {
-              echo "<div class='team-listing'>
-                    <h3>League Team: </h3> 
-                    {$leagueTeam["Name"]} (Following {$leagueTeam["Count(*)"]} Players)
-                    <p> {$leagueTeam["TeamDesc"]} </p>
-                    <a href='team_profile.php?teamID={$leagueTeam["TeamID"]}'>View More Info</a>
-                    </div>
-                    ";
-            }
-
-            // Fetch Pickup Teams
-            $sql = "SELECT Team.TeamID, Name, TeamDesc, Count(*)
+              // Fetch Pickup Teams
+              $sql = "SELECT Team.TeamID, Name, TeamDesc, Count(*)
                     FROM Team, PickupTeamPlayers
                     WHERE Team.TeamID = PickupTeamPlayers.TeamID
                     AND Player IN (SELECT Follows FROM Follows WHERE Player = '$loggedInUser')
                     GROUP BY Team.TeamID";
+              $result2 = $conn->query($sql);
+              if ($result2->num_rows > 0) {
+                echo "<h4>Pickup Teams</h4>";
+                while ($pickupTeam = $result2->fetch_assoc()) {
+                  echo "<div class=\"team\">
+                    <p class=\"title\"><a href=\"team_profile.php?teamID={$pickupTeam["TeamID"]}\"><strong>{$pickupTeam["Name"]}</strong></a> (Following {$pickupTeam["Count(*)"]} Players)<p>
+                    <p>{$pickupTeam["TeamDesc"]}</p>
+                    </div>";
+                }
+              }
 
-            $result2 = $conn->query($sql);
-            while ($pickupTeam = $result2->fetch_assoc()) {
-              echo "<div class='team-listing'>
-                    <h3>Pickup Team: </h3> 
-                    {$pickupTeam["Name"]} (Following {$pickupTeam["Count(*)"]} Players)
-                    <p> {$pickupTeam["TeamDesc"]} </p>
-                    <a href='team_profile.php?teamID={$pickupTeam["TeamID"]}'>View More Info</a>
-                    </div>
-                    ";
-            }
-
-            // Fetch Club Teams
-            $sql = "SELECT Team.TeamID, Name, TeamDesc, Count(*)
+              // Fetch Club Teams
+              $sql = "SELECT Team.TeamID, Name, TeamDesc, Count(*)
                         FROM Player, Team
                         WHERE TeamID = ClubID
                         AND Username IN (SELECT Follows FROM Follows WHERE Player = '$loggedInUser')
                         GROUP BY TeamID";
-
-            $result3 = $conn->query($sql);
-            while ($clubTeam = $result3->fetch_assoc()) {
-              echo "<div class='team-listing'>
-                        <h3>Club Team: </h3> 
-                        {$clubTeam["Name"]} (Following {$clubTeam["Count(*)"]} Players)
-                        <p> {$clubTeam["TeamDesc"]} </p>
-                        <a href='team_profile.php?teamID={$clubTeam["TeamID"]}'>View More Info</a>
-                        </div>
-                        ";
+              $result3 = $conn->query($sql);
+              if ($result3->num_rows > 0) {
+                echo "<h4>Club Teams</h4>";
+                while ($clubTeam = $result3->fetch_assoc()) {
+                  echo "<div class=\"team\">
+                    <p class=\"title\"><a href=\"team_profile.php?teamID={$clubTeam["TeamID"]}\"><strong>{$clubTeam["Name"]}</strong></a> (Following {$clubTeam["Count(*)"]} Players)<p>
+                    <p>{$clubTeam["TeamDesc"]}</p>
+                    </div>";
+                }
+              }
+            } else {
+              echo "Please Log In";
             }
-          } else {
-            echo "Please Log In";
-          }
-          ?>
+            ?>
+          </div>
         </div>
       </div>
     </main>

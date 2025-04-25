@@ -27,58 +27,66 @@
         </a>
         <h1>Find Teams</h1>
       </div>
+
       <div class="main">
-        <?php
-        echo isset($_COOKIE["user"]) ? $_COOKIE["user"] : "Not Logged In";
-        echo "<br>";
-        ?>
-
-        <a href="create_club_team.html">New Club Team</a>
-        <a href="create_league_team.html">New League Team</a>
-        <a href="create_pickup_team.html">New Pickup Team</a>
-        <form method="get">
-          <label for="lat">Latitude:</label>
-          <input type="text" id="lat" name="lat" value="">
-          <label for="long">Longitude:</label>
-          <input type="text" id="long" name="long" value=""><br>
-          <input type="radio" id="team" name="team" value="0" checked="checked">
-          <label for="pickup"> Any Team</label>
-          <input type="radio" id="team" name="team" value="1">
-          <label for="pickup"> Pickup Team</label>
-          <input type="radio" id="team" name="team" value="2">
-          <label for="club"> League Team</label>
-          <input type="radio" id="team" name="team" value="3">
-          <label for="league"> Club Team</label>
-          <input type="submit" value="Submit">
+        <div class="search">
+          <label class="text">Latitude</label>
+          <label class="text" for="long">Longitude</label>
+          <label class="select">Team Type</label>
+          <label class="submit"></label>
+        </div>
+        <form class="search" method="get">
+          <input type="text" id="lat" name="lat" placeholder="xx.xxxx">
+          <input type="text" id="long" name="long" placeholder="xx.xxxx">
+          <select name="team" id="team">
+            <option value="0">Any</option>
+            <option value="1">Pickup</option>
+            <option value="2">League</option>
+            <option value="3">Club</option>
+          </select>
+          <input type="submit" value="&#x1F50E;&#xFE0E;">
         </form>
-        <?php
-        include 'start_db.php';
-        $lat = isset($_GET['lat']) ? $_GET["lat"] : "";
-        $long = isset($_GET['long']) ? $_GET["long"] : "";
-        $team = isset($_GET['team']) ? $_GET["team"] : 0;
+        <p class="or">Or Create a Team:
+          <a class="create" href="create_club_team.html">Pickup</a>,
+          <a class="create" href="create_league_team.html">League</a>,
+          <a class="create" href="create_pickup_team.html">Club</a>
+        </p>
 
-        $sql = "SELECT * FROM team WHERE 1 = 1";
+        <br>
 
-        if ($long && $lat) {
-          $sql = $sql . " AND ABS(longitude - $long) < 0.6 AND ABS(latitude - $lat) < 0.6";
-        }
+        <div class="team_list">
+          <?php
+          include 'start_db.php';
+          $lat = isset($_GET['lat']) ? $_GET["lat"] : "";
+          $long = isset($_GET['long']) ? $_GET["long"] : "";
+          $team = isset($_GET['team']) ? $_GET["team"] : 0;
 
-        if ($team > 0) {
-          $teamList = array("pickupteam", "leagueteam", "clubteam");
-          $sql = $sql . " AND TeamID IN (SELECT TeamID FROM " . $teamList[$team - 1] . ")";
-        }
+          $sql = "SELECT * FROM team WHERE 1 = 1";
 
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
-            echo $row["Name"] . " (Host: " . $row["Host"] . ")<br>" . $row["TeamDesc"] . "<br><br>";
+          if ($long && $lat) {
+            $sql = $sql . " AND ABS(longitude - $long) < 0.6 AND ABS(latitude - $lat) < 0.6";
           }
-        } else {
-          echo "0 Teams";
-        }
-        $conn->close();
-        ?>
+
+          if ($team > 0) {
+            $teamList = array("pickupteam", "leagueteam", "clubteam");
+            $sql = $sql . " AND TeamID IN (SELECT TeamID FROM " . $teamList[$team - 1] . ")";
+          }
+
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              echo "<div class=\"team\">
+                      <p class=\"title\"><a href=\"team_profile.php?teamID={$row["TeamID"]}\"><strong>{$row["Name"]}</strong></a> (Host: {$row["Host"]})<p>
+                      <p>{$row["TeamDesc"]}</p>
+                    </div>";
+            }
+          } else {
+            echo "0 Teams";
+          }
+          $conn->close();
+          ?>
+        </div>
       </div>
     </main>
   </div>
