@@ -59,6 +59,7 @@
                     <p><strong>Phone Number:</strong> {$user["Phone"]}</p>
                     <p><strong>USAU ID:</strong> " . (isset($user['UsauID']) ? $user["UsauID"] : "No USAU ID found") . "</p>
                     <p><strong>Plays against:</strong> {$genderMatch}</p>
+                    <br>
                     <a href='edit_user_profile.html'>Edit User Info</a>
                     <form action=\"logout.php\">
                       <input type=\"submit\" Value=\"Log Out\">
@@ -68,22 +69,24 @@
             echo "<h2>Your Teams:</h2>";
 
             // First, check for a club team
-            if (isset($user["ClubID"])) {
-              $sql = "SELECT * FROM clubteam as c
-                      INNER JOIN team as t ON c.TeamID = t.TeamID
-                      WHERE c.TeamID = '{$user["ClubID"]}' 
-                            OR t.Host = '{$loggedInUser}'";
+            $sql = "SELECT * FROM clubteam as c
+                    INNER JOIN team as t ON c.TeamID = t.TeamID
+                    WHERE c.TeamID = '{$user["ClubID"]}' 
+                          OR t.Host = '{$loggedInUser}'";
 
-              $result2 = $conn->query($sql);
-              while ($clubTeam = $result2->fetch_assoc()) {
-                echo "<div class='team-listing'>
-                          <h3>Club Team: </h3>{$clubTeam["Name"]} (Captain: {$clubTeam["Captain"]})
-                          <p>{$clubTeam["TeamDesc"]}</p>
-                          <a href='team_profile.php?teamID={$clubTeam["TeamID"]}'>View More Info</a> 
-                        </div>
-                    ";
-              }
+            $result2 = $conn->query($sql);
+            while ($clubTeam = $result2->fetch_assoc()) {
+              echo "<div class='team-listing'>
+                        <h3>
+                          <a href='team_profile.php?teamID={$clubTeam["TeamID"]}'>{$clubTeam["Name"]}</a> 
+                          <span class='gray'>(Captain: {$clubTeam["Captain"]})</span>
+                        </h3>
+                        Club Team
+                        <p>{$clubTeam["TeamDesc"]}</p>
+                      </div>
+                  ";
             }
+            
 
             // Fetch League Teams
             $sql = "SELECT * FROM Team as t
@@ -94,10 +97,12 @@
             $result2 = $conn->query($sql);
             while ($leagueTeam = $result2->fetch_assoc()) {
               echo "<div class='team-listing'>
-                        <h3>League Team: </h3> 
-                        {$leagueTeam["Name"]} (Host: {$leagueTeam["Host"]})
+                        <h3>
+                          <a href='team_profile.php?teamID={$leagueTeam["TeamID"]}'>{$leagueTeam["Name"]}</a>
+                          <span class='gray'>(Host: {$leagueTeam["Host"]})</span>
+                        </h3>
+                        League Team
                         <p> {$leagueTeam["TeamDesc"]} </p>
-                        <a href='team_profile.php?teamID={$leagueTeam["TeamID"]}'>View More Info</a>
                       </div>
                 ";
             }
@@ -111,10 +116,12 @@
             $result2 = $conn->query($sql);
             while ($pickupTeam = $result2->fetch_assoc()) {
               echo "<div class='team-listing'>
-                        <h3>Pickup Team: </h3> 
-                        {$pickupTeam["Name"]} (Host: {$pickupTeam["Host"]})
+                        <h3>
+                          <a href='team_profile.php?teamID={$pickupTeam["TeamID"]}'>{$pickupTeam["Name"]}</a>
+                          <span class='gray'>(Host: {$pickupTeam["Host"]})</span>
+                        </h3> 
+                        Pickup Team
                         <p> {$pickupTeam["TeamDesc"]} </p>
-                        <a href='team_profile.php?teamID={$pickupTeam["TeamID"]}'>View More Info</a>
                       </div>
                 ";
             }
