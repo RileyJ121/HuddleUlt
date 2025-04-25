@@ -42,9 +42,9 @@
               <option value="3">Club</option>
             </select>
           </div>
-          <div class="submit">
+          <div>
             <label></label> <br>
-            <input type="submit" value="&#x1F50E;&#xFE0E;">
+            <input class="enter" type="submit" value="&#x1F50E;&#xFE0E;">
           </div>
         </form>
         <p class="or">Or :

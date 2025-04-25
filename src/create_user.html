@@ -25,27 +25,41 @@
         </div>
         <div class="main">
           <form action="create_user_confirmation.php" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required/><br />
-            <label for="password">Password:</label>
-            <input type="text" id="password" name="password" required/><br />
-            <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname" required/><br />
-            <label for="lastname">Last Name:</label>
-            <input type="text" id="lastname" name="lastname" required/><br />
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required/><br />
-            <label for="phonenum">Phone Number:</label>
-            <input type="text" id="phonenum" name="phonenum" /><br />
-            <label for="usauID">USAU ID:</label>
-            <input type="text" id="usauID" name="usauID" /><br />
-            <fieldset>
-              <legend>Gender Matching Player</legend>
-              <input type="radio" id="gender" name="gender" value="1">
-              <label for="pickup">Male</label>
-              <input type="radio" id="gender" name="gender" value="2">
-              <label for="club">Female</label>
-            </fieldset>
+            <div class="box">
+              <label>Username*</label>
+              <input type="text" id="username" name="username" required/><br />
+            </div><br>
+            <div class="box">
+              <label>Password*</label>
+              <input type="text" id="password" name="password" required/><br />
+            </div><br>
+            <div class="box">
+              <label>First Name*</label>
+              <input type="text" id="firstname" name="firstname" required/><br />
+            </div><br>
+            <div class="box">
+              <label>Last Name*</label>
+              <input type="text" id="lastname" name="lastname" required/><br />
+            </div><br>
+            <div class="box">
+              <label>Email*</label>
+              <input type="text" id="email" name="email" required/><br />
+            </div><br>
+            <div class="box">
+              <label>Phone Number</label>
+              <input type="text" id="phonenum" name="phonenum" /><br />
+            </div><br>
+            <div class="box">
+              <label>USAU ID</label>
+              <input type="text" id="usauID" name="usauID" /><br />
+            </div><br>
+            <div class="box">
+              <label>Gender Matching</label>
+              <select name="gender" id="gender">
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+              </select>
+            </div><br>
             <input type="submit" value="Submit" />
           </form>
         </div>

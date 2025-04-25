@@ -144,9 +144,9 @@
               <label>Password</label> <br>
               <input type=\"text\" id=\"password\" name=\"password\" placeholder=\"∗∗∗∗∗∗∗∗\" required>
             </div>
-            <div class=\"submit\">
+            <div>
               <label></label> <br>
-              <input type=\"submit\" value=\"&crarr;\">
+              <input class=\"enter\" type=\"submit\" value=\"&crarr;\">
             </div>
           </form>";
           echo "<p class=\"or\">Or
