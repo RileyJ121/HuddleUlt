@@ -60,7 +60,7 @@
                     <p><strong>USAU ID:</strong> " . (isset($user['UsauID']) ? $user["UsauID"] : "No USAU ID found") . "</p>
                     <p><strong>Plays against:</strong> {$genderMatch}</p>
                     <br>
-                    <a href='edit_user_profile.html'>Edit User Info</a>
+                    <a href='edit_user_profile.php'>Edit User Info</a>
                     <form action=\"logout.php\">
                       <input type=\"submit\" Value=\"Log Out\">
                     </form>
