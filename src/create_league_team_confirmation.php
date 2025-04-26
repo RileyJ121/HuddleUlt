@@ -1,55 +1,89 @@
-<?php
+<!doctype html>
+<html>
 
-if (isset($_COOKIE["user"])) {
-    $loggedInUser = $_COOKIE["user"];
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/home.css" rel="stylesheet">
+    <link href="../public/main.css" rel="stylesheet">
+    <title>Huddle Ult</title>
+</head>
 
-    include 'start_db.php';
+<body>
+    <nav>
+        <img src="../public/Logo.png" alt="Logo">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="search_team.php">Search</a></li>
+            <li><a href="player_activity.php">Activity</a></li>
+            <li><a href="user_profile.php">Profile</a></li>
+        </ul>
+    </nav>
+    <div class="bg">
+        <main>
+            <div class="header">
+                <a href="search_team.php">
+                    <h3>🢀</h3>
+                </a>
+            </div>
+            <?php
 
-    $name = $_POST["name"];
-    $desc = isset($_POST["desc"]) && !empty($_POST["desc"]) ? "'" . $_POST["desc"] . "'" : "NULL";
-    $lat = $_POST["lat"];
-    $long = $_POST["long"];
+            if (isset($_COOKIE["user"])) {
+                $loggedInUser = $_COOKIE["user"];
 
-    $league = $_POST["league"];
-    $skill = isset($_POST["skill"]) && !empty($_POST["skill"]) ? $_POST["skill"] : "NULL";
-    $captain = isset($_POST["capt"]) && !empty($_POST["capt"]) ? "'" . $_POST["capt"] . "'" : "NULL";
+                include 'start_db.php';
 
-    $sql = "SELECT * FROM league WHERE LeagueID = $league";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
+                $name = $_POST["name"];
+                $desc = isset($_POST["desc"]) && !empty($_POST["desc"]) ? "'" . $_POST["desc"] . "'" : "NULL";
+                $lat = $_POST["lat"];
+                $long = $_POST["long"];
 
-        // Verify captain
-        if ($captain != "NULL") {
-            $sql = "SELECT * FROM player WHERE Username = $captain";
-            $result = $conn->query($sql);
-        } else {
-            $result = true;
-        }
+                $league = $_POST["league"];
+                $skill = isset($_POST["skill"]) && !empty($_POST["skill"]) ? $_POST["skill"] : "NULL";
+                $captain = isset($_POST["capt"]) && !empty($_POST["capt"]) ? "'" . $_POST["capt"] . "'" : "NULL";
 
-        // Create team if captain is real
-        if ($captain == "NULL" || $result->num_rows > 0) {
-            // Create generic team
-            $sql = "INSERT INTO team
+                $sql = "SELECT * FROM league WHERE LeagueID = $league";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+
+                    // Verify captain
+                    if ($captain != "NULL") {
+                        $sql = "SELECT * FROM player WHERE Username = $captain";
+                        $result = $conn->query($sql);
+                    } else {
+                        $result = true;
+                    }
+
+                    // Create team if captain is real
+                    if ($captain == "NULL" || $result->num_rows > 0) {
+                        // Create generic team
+                        $sql = "INSERT INTO team
                 VALUES (NULL, '$name', '$desc', $lat, $long, '$loggedInUser')";
-            $conn->query($sql);
+                        $conn->query($sql);
 
-            // Create club team
-            $sql = "INSERT INTO clubteam
+                        // Create club team
+                        $sql = "INSERT INTO clubteam
                 VALUES (LAST_INSERT_ID(), $league, $skill, $captain)";
-            $conn->query($sql);
+                        $conn->query($sql);
 
-            echo "Team Created!";
-        } else {
-            echo "Captaining player does not exist";
-        }
-    } else {
-        echo "League does not exist";
-    }
+                        echo "Team Created!";
+                    } else {
+                        echo "Captaining player does not exist.";
+                    }
+                } else {
+                    echo "League does not exist.";
+                }
 
-    $conn->close();
+                $conn->close();
 
-} else {
-    echo "Please <a href=\"user_profile.php\">log in<a> before creating a team";
-}
+            } else {
+                echo "Please <a href=\"user_profile.php\">log in<a> before creating a team.";
+            }
 
-?>
+            ?>
+            <a href="search_team.php">Okay</a>
+        </main>
+    </div>
+</body>
+
+</html>
