@@ -31,10 +31,9 @@
         <?php
         setcookie("user", "", time() - 3600, "/");
 
-        echo "Logged Out <br> <a href=\"search_team.php\">Done</a>";
+        echo "Logged Out";
         ?>
-
-
+        <a href="user_profile.php">Okay</a>
       </div>
     </main>
   </div>
