@@ -42,8 +42,7 @@
 
                 // Create generic team
                 $sql = "UPDATE player
-            SET Fname = '$firstname', Lname = '$lastname', Email = '$email', Phone = '$phonenum', UsauID = $usauID, Gender = $gender
-            WHERE username = '$loggedInUser'";
+            SET Fname = '$firstname', Lname = '$lastname', Email = '$email', Phone = '$phonenum', UsauID = $usauID, Gender = $gender WHERE username = '$loggedInUser'";
 
                 if ($conn->query($sql) === TRUE) {
                     echo "Profile updated";
