@@ -97,12 +97,12 @@
 
               $result2 = $conn->query($sql);
               while ($clubTeam = $result2->fetch_assoc()) {
-                echo "<div class='team-listing'>
+                echo "<div class='team'>
                         <h3>
                           <a href='team_profile.php?teamID={$clubTeam["TeamID"]}'>{$clubTeam["Name"]}</a> 
                           <span class='gray'>(Captain: {$clubTeam["Captain"]})</span>
                         </h3>
-                        Club Team
+                        <span class='team-type'>Club Team</span>
                         <p>{$clubTeam["TeamDesc"]}</p>
                       </div>
                   ";
@@ -116,12 +116,12 @@
   
               $result2 = $conn->query($sql);
               while ($leagueTeam = $result2->fetch_assoc()) {
-                echo "<div class='team-listing'>
+                echo "<div class='team'>
                         <h3>
                           <a href='team_profile.php?teamID={$leagueTeam["TeamID"]}'>{$leagueTeam["Name"]}</a>
                           <span class='gray'>(Host: {$leagueTeam["Host"]})</span>
                         </h3>
-                        League Team
+                        <span class='team-type'>League Team</span>
                         <p> {$leagueTeam["TeamDesc"]} </p>
                       </div>
                 ";
@@ -136,12 +136,12 @@
               $result2 = $conn->query($sql);
 
               while ($pickupTeam = $result2->fetch_assoc()) {
-                echo "<div class='team-listing'>
+                echo "<div class='team'>
                         <h3>
                           <a href='team_profile.php?teamID={$pickupTeam["TeamID"]}'>{$pickupTeam["Name"]}</a>
                           <span class='gray'>(Host: {$pickupTeam["Host"]})</span>
                         </h3> 
-                        Pickup Team
+                        <span class='team-type'>Pickup Team</span>
                         <p> {$pickupTeam["TeamDesc"]} </p>
                       </div>
                 ";

@@ -156,6 +156,7 @@ input[type=submit] {
     background: #B3B3B3;
     border: none;
     border-radius: 5px;
+    font-family: 'Figtree', sans-serif;
 }
 input[type=submit]:not(.enter) {
     padding: 11px;
