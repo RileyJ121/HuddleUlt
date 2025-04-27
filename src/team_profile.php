@@ -48,14 +48,26 @@
 
         if (isset($_COOKIE["user"])) {
           echo "
+          <div style='display: flex; gap: 15px'>
             <form method=\"post\">
             <input type=\"submit\" name=\"join\"
                     class=\"button\" value=\"Join Team\" />
             
             <input type=\"submit\" name=\"leave\"
                     class=\"button\" value=\"Leave Team\" />
-            </form>
-            <br>";
+            </form>";
+
+          if ($team["Host"] === ($_COOKIE["user"])) {
+            echo "
+              <form action='delete_team_confirmation.php' method='POST'>
+                <input type='hidden' name='team' value='{$teamID}' />
+                <input type='submit' name='delete' class='delete-button' value='Delete Team' />
+              </form>";
+          }  
+
+          echo "</div><br>";
+
+          
         }
         ?>
 

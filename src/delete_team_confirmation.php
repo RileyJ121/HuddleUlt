@@ -28,29 +28,23 @@
             </div>
             <?php
 
-            if (isset($_COOKIE["user"])) {
+            // Only delete if logged in, and came from delete form
+            if (isset($_COOKIE["user"]) && isset($_POST["delete"]) && isset($_POST["team"])) {
+                $team = $_POST['team'];
                 $loggedInUser = $_COOKIE["user"];
                 include 'start_db.php';
 
-
-                $firstname = $_POST["firstname"];
-                $lastname = $_POST["lastname"];
-                $email = $_POST["email"];
-                $phonenum = isset($_POST["phonenum"]) && !empty($_POST["phonenum"]) ? $_POST["phonenum"] : "NULL";
-                $usauID = isset($_POST["usauID"]) && !empty($_POST["usauID"]) ? $_POST["usauID"] : "NULL";
-                $gender = isset($_POST["gender"]) && !empty($_POST["gender"]) ? $_POST["gender"] : "NULL";
-
-                // Create generic team
-                $sql = "UPDATE player
-            SET Fname = '$firstname', Lname = '$lastname', Email = '$email', Phone = '$phonenum', UsauID = $usauID, Gender = $gender WHERE username = '$loggedInUser'";
+                // Delete team
+                $sql = "DELETE FROM team
+                        WHERE Host = '$loggedInUser' AND TeamID = {$team}";
 
                 if ($conn->query($sql) === TRUE) {
-                    echo "Profile updated";
+                    echo "Team deleted";
                 }
                 $conn->close();
             }
             ?>
-            <a href="user_profile.php">Okay</a>
+            <a href="search_team.php">Okay</a>
         </main>
     </div>
 </body>
