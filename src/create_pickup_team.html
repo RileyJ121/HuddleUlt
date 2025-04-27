@@ -6,6 +6,16 @@
   <link href="../public/create_pickup_team.css" rel="stylesheet">
   <link href="../public/main.css" rel="stylesheet">
   <title>Huddle Ult</title>
+  <script>
+    function checkAge() {
+      let min = document.forms["myForm"]["minage"].value;
+      let max = document.forms["myForm"]["maxage"].value;
+      if (min >= 0 && max >= 0 && min >= max) {
+        alert("Min must be below max!");
+        return false;
+      }
+    }
+    </script>
 </head>
 <body>
   <nav>
@@ -24,42 +34,42 @@
         <h1>New Pickup Group</h1>
       </div>
       <div class="main">
-        <form  action="create_pickup_team_confirmation.php" method="POST">
+        <form  action="create_pickup_team_confirmation.php" onsubmit="return checkAge()" method="POST">
           <div class="box">
             <label>Name*</label>
-            <input type="text" id="name" name="name" required><br>
+            <input type="text" id="name" name="name" maxlength="20" placeholder="Team Name" required><br>
           </div><br>
           <div class="box">
             <label>Description</label>
-            <input type="text" id="desc" name="desc"><br>
+            <input type="text" id="desc" name="desc" maxlength="255" placeholder="Team Description"><br>
           </div><br>
           <div class="box">
             <label>Latitude*</label>
-            <input type="text" id="lat" name="lat" required><br>
+            <input type="number" id="lat" name="lat" step="0.0001" placeholder="12.3456" required><br>
           </div><br>
           <div class="box">
             <label>Longitude*</label>
-            <input type="text" id="long" name="long" required><br>
+            <input type="number" id="long" name="long" step="0.0001" placeholder="12.3456" required><br>
           </div><br>
           <div class="box">
             <label>Skill Level</label>
-            <input type="text" id="skill" name="skill"><br>
+            <input type="number" id="skill" name="skill" min="1" max="5" placeholder="1-5"><br>
           </div><br>
           <div class="box">
             <label>Min Age</label>
-            <input type="text" id="minage" name="minage"><br>
+            <input type="number" id="minage" name="minage" min="0" max="99" placeholder=""><br>
           </div><br>
           <div class="box">
             <label>Max Age</label>
-            <input type="text" id="maxage" name="maxage"><br>
+            <input type="number" id="maxage" name="maxage" min="0" max="99" placeholder=""><br>
           </div><br>
           <div class="box">
             <label>Days of Week</label>
-            <input type="text" id="days" name="days"><br>
+            <input type="text" id="days" name="days" pattern="^M?T?W?H?F?S?U?$" placeholder="MTWHFSU"><br>
           </div><br>
           <div class="box">
             <label>Entry Fee</label>
-            <input type="text" id="fee" name="fee"><br>
+            <input type="number" id="fee" name="fee" min="0" max="999" placeholder="0-999"><br>
           </div><br>
           <input type="submit" value="Submit">
         </form>
