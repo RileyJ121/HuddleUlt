@@ -152,6 +152,23 @@
           echo "<p class=\"or\">Or
                   <a href=\"create_user.html\">Create a User</a>
                 </p>";
+
+          echo "<br><br><h4>Log In <strong>Using Prepared Statement!</strong>:</h4>
+          <form class=\"search\" action=\"login_preparedstatement.php\" method=\"post\">
+            <div class=\"box\">
+              <label>Username</label> <br>
+              <input type=\"text\" id=\"username\" name=\"username\" placeholder=\"username\" required>
+            </div>
+            <div class=\"box\">
+              <label>Password</label> <br>
+              <input type=\"text\" id=\"password\" name=\"password\" placeholder=\"∗∗∗∗∗∗∗∗\" required>
+            </div>
+            <div>
+              <label></label> <br>
+              <input class=\"enter\" type=\"submit\" value=\"&crarr;\">
+            </div>
+          </form>";
+          
         }
         ?>
         </div>
