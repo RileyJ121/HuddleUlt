@@ -76,6 +76,10 @@ if (isset($_COOKIE["user"])) {
             </div><br>
             <input type="submit" value="Submit" />
           </form>
+          <br><br>
+          <form action="delete_user_confirmation.php" method="POST">
+            <input type="submit" name="delete" value="Delete User" class="delete-button"  />  
+          </form>
       </div>
     </main>
   </div>

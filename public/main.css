@@ -168,3 +168,11 @@ input[type=submit]:not(.enter) {
 input[type=submit]:hover {
     background: #FF5F1F;
 }
+
+input[type=submit].delete-button {
+    background-color: #f04a4a;
+}
+
+input[type=submit].delete-button:hover {
+    background-color: rgb(233, 8, 8);
+}
