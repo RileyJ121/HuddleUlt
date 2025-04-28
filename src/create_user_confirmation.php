@@ -39,14 +39,24 @@
             $usauID = isset($_POST["usauID"]) && !empty($_POST["usauID"]) ? $_POST["usauID"] : "NULL";
             $gender = isset($_POST["gender"]) && !empty($_POST["gender"]) ? $_POST["gender"] : "NULL";
 
-            // Create generic team
-            $sql = "INSERT INTO player
+
+            $sql = "SELECT * FROM player WHERE Username = '$username'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows == 0) {
+                // Create generic team
+                $sql = "INSERT INTO player
             VALUES ('$username', '$password', '$firstname', '$lastname', '$email', $phonenum, NULL, $usauID, $gender)";
 
-            if ($conn->query($sql) === TRUE) {
-                echo "User Created And Logged In!";
-                setcookie("user", $username, time() + (86400 * 30), "/"); // 86400 = 1 day
+                if ($conn->query($sql) === TRUE) {
+                    echo "User Created And Logged In!";
+                    setcookie("user", $username, time() + (86400 * 30), "/"); // 86400 = 1 day
+                }
+            } else {
+                echo "Username already in use.";
             }
+
+
             $conn->close();
             ?>
             <a href="user_profile.php">Okay</a>

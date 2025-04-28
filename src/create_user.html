@@ -27,31 +27,31 @@
           <form action="create_user_confirmation.php" method="POST">
             <div class="box">
               <label>Username*</label>
-              <input type="text" id="username" name="username" required/><br />
+              <input type="text" id="username" name="username" maxlength="20" placeholder="Username" required/><br />
             </div><br>
             <div class="box">
               <label>Password*</label>
-              <input type="text" id="password" name="password" required/><br />
+              <input type="text" id="password" name="password" maxlength="20" placeholder="Password" required/><br />
             </div><br>
             <div class="box">
               <label>First Name*</label>
-              <input type="text" id="firstname" name="firstname" required/><br />
+              <input type="text" id="firstname" name="firstname" maxlength="20" placeholder="John" required/><br />
             </div><br>
             <div class="box">
               <label>Last Name*</label>
-              <input type="text" id="lastname" name="lastname" required/><br />
+              <input type="text" id="lastname" name="lastname" maxlength="20" placeholder="Smith" required/><br />
             </div><br>
             <div class="box">
               <label>Email*</label>
-              <input type="text" id="email" name="email" required/><br />
+              <input type="email" id="email" name="email" maxlength="20" placeholder="email@domain.com" required/><br />
             </div><br>
             <div class="box">
               <label>Phone Number</label>
-              <input type="text" id="phonenum" name="phonenum" /><br />
+              <input type="number" id="phonenum" name="phonenum" min="1000000000" max="9999999999" placeholder="1234567890"/><br />
             </div><br>
             <div class="box">
               <label>USAU ID</label>
-              <input type="text" id="usauID" name="usauID" /><br />
+              <input type="number" id="usauID" name="usauID" min="100000" max="999999" placeholder="123456"/><br />
             </div><br>
             <div class="box">
               <label>Gender Matching</label>

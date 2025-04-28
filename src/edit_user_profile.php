@@ -48,23 +48,23 @@ if (isset($_COOKIE["user"])) {
       <form action="edit_user_confirmation.php" method="POST">
             <div class="box">
               <label>First Name*</label>
-              <input type="text" id="firstname" name="firstname" value=<?php echo $user["Fname"] ?> required/><br />
+              <input type="text" id="firstname" name="firstname" value=<?php echo $user["Fname"] ?> maxlength="20" required/><br />
             </div><br>
             <div class="box">
               <label>Last Name*</label>
-              <input type="text" id="lastname" name="lastname" value=<?php echo $user["Lname"] ?> required/><br />
+              <input type="text" id="lastname" name="lastname" value=<?php echo $user["Lname"] ?> maxlength="20" required/><br />
             </div><br>
             <div class="box">
               <label>Email*</label>
-              <input type="text" id="email" name="email" value=<?php echo $user["Email"] ?> required/><br />
+              <input type="text" id="email" name="email" value=<?php echo $user["Email"] ?> maxlength="20" required/><br />
             </div><br>
             <div class="box">
               <label>Phone Number</label>
-              <input type="text" id="phonenum" name="phonenum" value=<?php echo $user["Phone"] ?> /><br />
+              <input type="number" id="phonenum" name="phonenum" value=<?php echo $user["Phone"] ?> min="1000000000" max="9999999999"/><br />
             </div><br>
             <div class="box">
               <label>USAU ID</label>
-              <input type="text" id="usauID" name="usauID" value=<?php echo $user["UsauID"] ?> /><br />
+              <input type="number" id="usauID" name="usauID" value=<?php echo $user["UsauID"] ?> min="100000" max="999999"/><br />
             </div><br>
             <div class="box">
               <label>Gender Matching</label>

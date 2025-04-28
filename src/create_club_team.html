@@ -27,31 +27,31 @@
         <form action="create_club_team_confirmation.php" method="POST">
           <div class="box">
             <label>Name*</label>
-            <input type="text" id="name" name="name" required><br>
+            <input type="text" id="name" name="name" maxlength="20" placeholder="Team Name" required><br>
           </div><br>
           <div class="box">
             <label>Description</label>
-            <input type="text" id="desc" name="desc"><br>
+            <input type="text" id="desc" name="desc" maxlength="255" placeholder="Team Description"><br>
           </div><br>
           <div class="box">
             <label>Latitude*</label>
-            <input type="text" id="lat" name="lat" required><br>
+            <input type="number" id="lat" name="lat" step="0.0001" placeholder="12.3456" required><br>
           </div><br>
           <div class="box">
             <label>Longitude*</label>
-            <input type="text" id="long" name="long" required><br>
+            <input type="number" id="long" name="long" step="0.0001" placeholder="12.3456" required><br>
           </div><br>
           <div class="box">
             <label>Gender Division</label>
-            <input type="text" id="gender" name="gender"><br>
+            <input type="number" id="gender" name="gender" min="0" max="3" placeholder="1: Mens, 2: Womens, 3: Mixed"><br>
           </div><br>
           <div class="box">
             <label>Age Division</label>
-            <input type="text" id="age" name="age">
+            <input type="number" id="age" name="age" min="1" max="6" placeholder="1: Youth, 2: College, 3: Adult, 4: Masters, 5: Grandmasters, 6: Great Grandmasters">
           </div><br>
           <div class="box">
             <label>Captain</label>
-            <input type="text" id="capt" name="capt">
+            <input type="text" id="capt" name="capt" maxlength="20" placeholder="Captain Username">
           </div><br>
           <input type="submit" value="Submit">
         </form>
